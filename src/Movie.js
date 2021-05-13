@@ -1,28 +1,61 @@
 import React from "react";
+import styled from "styled-components";
+
 import deleteIcon from "./images/delete.png";
 import starIcon from "./images/star.png";
+
+const ICONSIZE = 24;
+
+const StyledMovie = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+`;
+
+const StyledTitle = styled.div`
+  flex-grow: 1;
+`;
+
+const StyledStars = styled.div`
+  width: ${ICONSIZE * 5}px;
+  text-align: right;
+`;
+
+const StyledStarImage = styled.img`
+  width: ${ICONSIZE}px;
+  height: ${ICONSIZE}px;
+`;
+
+const StyledDeleteImage = styled.img`
+  margin-left: 10px;
+  width: ${ICONSIZE}px;
+  height: ${ICONSIZE}px;
+  cursor: pointer;
+`;
 
 const getStars = (rating) => {
   return Array(rating)
     .fill(0)
-    .map((_, i) => (
-      <img key={i} src={starIcon} alt="star" className="float-end" />
-    ));
+    .map((_, i) => <StyledStarImage key={i} src={starIcon} alt="star" />);
 };
 
-export default function Movie(props) {
+const Movie = (props) => {
   return (
-    <li>
-      {props.item.title}
-      <img
+    <StyledMovie>
+      <StyledTitle>{props.item.title}</StyledTitle>
+      <StyledStars>{getStars(props.item.grade)}</StyledStars>
+      <StyledDeleteImage
         src={deleteIcon}
         alt="X"
-        className="float-end"
         onClick={() => {
           props.deleteItem(props.item.id);
         }}
-      ></img>
-      {getStars(props.item.grade)}
-    </li>
+      />
+    </StyledMovie>
   );
-}
+};
+
+export default Movie;

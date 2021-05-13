@@ -6,8 +6,6 @@ export default function MovieList() {
   const inputRef = useRef();
   const titleRef = useRef();
   const gradeRef = useRef();
-  const gradeSortRef = useRef();
-  const titleSortRef = useRef();
 
   function addMovie(e) {
     e.preventDefault();
@@ -88,14 +86,10 @@ export default function MovieList() {
         ))}
       </ul>
 
-      <button
-        id="order-alphabetic"
-        className="btn btn-primary"
-        ref={titleSortRef}
-      >
+      <button id="order-alphabetic" className="btn btn-primary">
         Alfabetisk ordning
       </button>
-      <button id="order-grade" className="btn btn-primary" ref={gradeSortRef}>
+      <button id="order-grade" className="btn btn-primary">
         Betygsordning
       </button>
     </div>
