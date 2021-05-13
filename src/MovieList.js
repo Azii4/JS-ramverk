@@ -18,7 +18,8 @@ export default function MovieList() {
         grade: parseInt(gradeRef.current.value),
       },
     ]);
-    inputRef.current.value = "";
+    titleRef.current.value = "";
+    gradeRef.current.value = 0;
   }
 
   function deleteMovie(id) {
