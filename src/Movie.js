@@ -5,14 +5,15 @@ import starIcon from "./images/star.png";
 const getStars = (rating) => {
   return Array(rating)
     .fill(0)
-    .map((_, i) => <img key={i} src={starIcon} alt="star" />);
+    .map((_, i) => (
+      <img key={i} src={starIcon} alt="star" className="float-end" />
+    ));
 };
 
 export default function Movie(props) {
   return (
     <li>
       {props.item.title}
-      {getStars(props.item.grade)}
       <img
         src={deleteIcon}
         alt="X"
@@ -21,6 +22,7 @@ export default function Movie(props) {
           props.deleteItem(props.item.id);
         }}
       ></img>
+      {getStars(props.item.grade)}
     </li>
   );
 }
