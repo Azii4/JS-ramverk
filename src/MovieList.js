@@ -6,9 +6,26 @@ export default function MovieList() {
   const inputRef = useRef();
   const titleRef = useRef();
   const gradeRef = useRef();
+  const gradeSortRef = useRef();
+  const titleSortRef = useRef();
 
   function addMovie(e) {
     e.preventDefault();
+    if (!titleRef.current.value && gradeRef.current.value == 0) {
+      alert("Både titel och betyg saknas, försök igen!");
+      return false;
+    }
+
+    if (!titleRef.current.value) {
+      alert("Titel saknas, försök igen!");
+      return false;
+    }
+
+    if (gradeRef.current.value == 0) {
+      alert("Betyg saknas, försök igen!");
+      return false;
+    }
+
     const newId = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
     setMovies([
       ...movies,
@@ -24,11 +41,6 @@ export default function MovieList() {
 
   function deleteMovie(id) {
     setMovies(movies.filter((item) => item.id !== id));
-  }
-
-  function validate() {
-    if (!titleRef) {
-    }
   }
 
   return (
@@ -75,6 +87,17 @@ export default function MovieList() {
           <Movie key={movie.id} item={movie} deleteItem={deleteMovie} />
         ))}
       </ul>
+
+      <button
+        id="order-alphabetic"
+        className="btn btn-primary"
+        ref={titleSortRef}
+      >
+        Alfabetisk ordning
+      </button>
+      <button id="order-grade" className="btn btn-primary" ref={gradeSortRef}>
+        Betygsordning
+      </button>
     </div>
   );
 }
