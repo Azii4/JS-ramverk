@@ -30,7 +30,7 @@ export default function MovieList() {
       <form>
         <fieldset>
           <legend>Lägg till en film</legend>
-          <label for="title">Titel:</label>
+          <label htmlFor="title">Titel:</label>
           <input
             type="text"
             id="title"
@@ -38,7 +38,7 @@ export default function MovieList() {
             ref={titleRef}
             placeholder="Movie"
           ></input>
-          <label for="rating">Betyg:</label>
+          <label htmlFor="rating">Betyg:</label>
           <select
             type="text"
             id="rating"
