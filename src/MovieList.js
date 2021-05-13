@@ -15,7 +15,7 @@ export default function MovieList() {
       {
         id: newId,
         title: titleRef.current.value,
-        grade: gradeRef.current.value,
+        grade: parseInt(gradeRef.current.value),
       },
     ]);
     inputRef.current.value = "";

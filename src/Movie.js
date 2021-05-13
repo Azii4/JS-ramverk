@@ -2,13 +2,17 @@ import React from "react";
 import deleteIcon from "./images/delete.png";
 import starIcon from "./images/star.png";
 
-export default function Movie(props) {
-  console.log(props.item.grade);
+const getStars = (rating) => {
+  return Array(rating)
+    .fill(0)
+    .map((_, i) => <img key={i} src={starIcon} alt="star" />);
+};
 
+export default function Movie(props) {
   return (
     <li>
       {props.item.title}
-      {props.item.grade}
+      {getStars(props.item.grade)}
       <img
         src={deleteIcon}
         alt="X"
