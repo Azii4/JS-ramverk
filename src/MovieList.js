@@ -26,6 +26,11 @@ export default function MovieList() {
     setMovies(movies.filter((item) => item.id !== id));
   }
 
+  function validate() {
+    if (!titleRef) {
+    }
+  }
+
   return (
     <div>
       <form>
