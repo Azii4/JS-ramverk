@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function Sorting(props) {
-    const titleSort = 
+export default function Sorting() {
+  const titlesort = [];
+  const gradesort = [];
+  const nosort = [];
 }
