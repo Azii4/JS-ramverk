@@ -1,5 +1,10 @@
 import React, { useState, useRef } from "react";
 import Movie from "./Movie";
+import styled from "styled-components";
+
+const Movies = styled.ul`
+  padding: 0;
+`;
 
 export default function MovieList() {
   const [movies, setMovies] = useState([]);
@@ -59,8 +64,8 @@ export default function MovieList() {
     setMovies(movies.filter((item) => item.id !== id));
   }
 
-  return (
-    <div>
+  function AddMovieForm() {
+    return (
       <form>
         <fieldset>
           <legend>Lägg till en film</legend>
@@ -95,17 +100,23 @@ export default function MovieList() {
           </button>
         </fieldset>
       </form>
+    );
+  }
+
+  return (
+    <>
+      <AddMovieForm />
 
       <h2>Filmer</h2>
-      <ul className="list-group">
+      <Movies>
         {movies.map((movie) => (
           <Movie key={movie.id} item={movie} deleteItem={deleteMovie} />
         ))}
-      </ul>
+      </Movies>
 
       <button
         id="order-alphabetic"
-        className="btn btn-primary"
+        className="btn btn-primary me-3"
         onClick={titleSort}
       >
         Alfabetisk ordning
@@ -113,6 +124,6 @@ export default function MovieList() {
       <button id="order-grade" className="btn btn-primary" onClick={gradeSort}>
         Betygsordning
       </button>
-    </div>
+    </>
   );
 }
