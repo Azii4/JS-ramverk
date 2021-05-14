@@ -4,7 +4,6 @@ import Movie from "./Movie";
 export default function MovieList() {
   const [movies, setMovies] = useState([]);
   const [id, setId] = useState(0);
-  const inputRef = useRef();
   const titleRef = useRef();
   const gradeRef = useRef();
 
@@ -60,18 +59,6 @@ export default function MovieList() {
     setMovies(movies.filter((item) => item.id !== id));
   }
 
-  function gradeSorting() {
-    setMovies(
-      movies.sort((a, b) => {
-        if (a.title > b.title) {
-          return 1;
-        } else {
-          return -1;
-        }
-      })
-    );
-  }
-
   return (
     <div>
       <form>
@@ -102,7 +89,6 @@ export default function MovieList() {
           <button
             type="submit"
             className="btn btn-success mt-3"
-            //ref={inputRef}
             onClick={addMovie}
           >
             Spara film
