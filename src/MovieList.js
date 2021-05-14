@@ -3,13 +3,14 @@ import Movie from "./Movie";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([]);
-  //const inputRef = useRef();
+  const [id, setId] = useState(0);
+  const inputRef = useRef();
   const titleRef = useRef();
   const gradeRef = useRef();
 
   function addMovie(e) {
     e.preventDefault();
-    if (!titleRef.current.value && gradeRef.current.value == 0) {
+    if (!titleRef.current.value && gradeRef.current.value === "0") {
       alert("Både titel och betyg saknas, försök igen!");
       return false;
     }
@@ -19,22 +20,40 @@ export default function MovieList() {
       return false;
     }
 
-    if (gradeRef.current.value == 0) {
+    if (gradeRef.current.value === "0") {
       alert("Betyg saknas, försök igen!");
       return false;
     }
 
-    const newId = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
+    setId(id + 1);
     setMovies([
       ...movies,
       {
-        id: newId,
+        id: id,
         title: titleRef.current.value,
         grade: parseInt(gradeRef.current.value),
       },
     ]);
     titleRef.current.value = "";
     gradeRef.current.value = 0;
+  }
+
+  function clone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+  }
+
+  function titleSort(e) {
+    e.preventDefault();
+    let sortedMovies = clone(movies);
+    sortedMovies.sort((a, b) => b.title < a.title);
+    setMovies(sortedMovies);
+  }
+
+  function gradeSort(e) {
+    e.preventDefault();
+    let sortedMovies = clone(movies);
+    sortedMovies.sort((a, b) => b.grade - a.grade);
+    setMovies(sortedMovies);
   }
 
   function deleteMovie(id) {
@@ -98,14 +117,14 @@ export default function MovieList() {
         ))}
       </ul>
 
-      <button id="order-alphabetic" className="btn btn-primary">
+      <button
+        id="order-alphabetic"
+        className="btn btn-primary"
+        onClick={titleSort}
+      >
         Alfabetisk ordning
       </button>
-      <button
-        id="order-grade"
-        className="btn btn-primary"
-        onClick={gradeSorting}
-      >
+      <button id="order-grade" className="btn btn-primary" onClick={gradeSort}>
         Betygsordning
       </button>
     </div>
