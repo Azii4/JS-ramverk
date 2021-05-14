@@ -93,7 +93,7 @@ export default function MovieList() {
           </select>
           <button
             type="submit"
-            className="btn btn-success mt-3"
+            className="btn btn-success mt-3 mb-3"
             onClick={addMovie}
           >
             Spara film
