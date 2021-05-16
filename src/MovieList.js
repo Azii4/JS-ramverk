@@ -108,6 +108,7 @@ export default function MovieList() {
       <AddMovieForm />
 
       <h2>Filmer</h2>
+      <hr />
       <Movies>
         {movies.map((movie) => (
           <Movie key={movie.id} item={movie} deleteItem={deleteMovie} />
