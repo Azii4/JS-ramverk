@@ -49,7 +49,7 @@ export default function MovieList() {
   function titleSort(e) {
     e.preventDefault();
     let sortedMovies = clone(movies);
-    sortedMovies.sort((a, b) => b.title < a.title);
+    sortedMovies.sort((a, b) => (b.title > a.title ? -1 : 1));
     setMovies(sortedMovies);
   }
 
